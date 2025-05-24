@@ -16,9 +16,15 @@
           {
             "group": "Get Started",
             "pages": [
-              "guides/get-started/index",
-              "guides/get-started/quickstart",
-              "guides/get-started/development"
+              "index",
+              "quickstart",
+              "development"
+            ]
+          },
+          {
+            "group": "TEST",
+            "pages": [
+              "guides/test"
             ]
           },
           {
