@@ -14,7 +14,7 @@ title: "Introduction"
   className="hidden dark:block"
   src="/hero-dark.png"
   alt="Hero Dark"
-  title=""
+  title={true}
 />
 
 Bienvenue dans la documentation officielle d'Uracad, votre solution complète de gestion et de développement.
@@ -25,17 +25,55 @@ La documentation est organisée par sections pour faciliter votre navigation. N'
 \
 Bonne découverte \!
 
+## **Système Multi-Tenant**
+
+URACAD utilise un système multi-tenant qui permet à plusieurs organisations d'utiliser la même application tout en gardant leurs données complètement séparées. C'est comme un immeuble où chaque organisation a son propre appartement privé.
+
+## **Fonctionnement**
+
+### **Structure**
+
+- **Organisations** : Espaces privés indépendants
+
+
+- **Utilisateurs** : Peuvent appartenir à plusieurs organisations
+
+
+- **Données** : Isolées et sécurisées par organisation
+
+
+- **Rôles** : Personnalisables par organisation
+
+### **Avantages**
+
+- **Pour les Organisations**
+  - Données 100% privées
+
+
+  - Personnalisation complète
+
+
+  - Gestion indépendante
+  - Coûts d'infrastructure partagés
+- **Pour les Utilisateurs**
+  - Une seule application
+
+
+  - Accès multi-organisations
+
+
+  - Rôles personnalisés
+
+
+  - Interface familière
+
+![Untitled 2025 05 25 0011 Pn](/images/Untitled-2025-05-25-0011.png)
+
 <CardGroup cols={2}>
   <Card title="Installation" icon="desktop-arrow-down" href="https://docs.uracad.com/install">
-    Mise en place de l'application dans un environnement de prouction. 
+    Mise en place de l'application dans un environnement de prouction.
   </Card>
-  <Card title="Reference APIs" icon="code" href="https://mintlify.com/docs/api-playground/openapi">
-    Automatically generate endpoints from an OpenAPI spec
-  </Card>
-  <Card title="Add Components" icon="screwdriver-wrench" href="https://mintlify.com/docs/content/components/accordions">
-    Build interactive features and designs to guide your users
-  </Card>
-  <Card title="Get Inspiration" icon="stars" href="https://mintlify.com/customers">
-    Check out our showcase of our favorite documentation
+  <Card title="Référence APIs" icon="code" href="https://mintlify.com/docs/api-playground/openapi">
+    Définitions des différents endpoints disponibles pour l'API de l'application.
   </Card>
 </CardGroup>
