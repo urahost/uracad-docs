@@ -1,7 +1,7 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "mint",
-  "name": "Mint Starter Kit",
+  "theme": "linden",
+  "name": "Uracad",
   "colors": {
     "primary": "#16A34A",
     "light": "#07C983",
@@ -76,8 +76,8 @@
     ],
     "primary": {
       "type": "button",
-      "label": "UraCad",
-      "href": "https://uracad.com"
+      "label": "Demo",
+      "href": "https://demo.uracad.com"
     }
   },
   "footer": {
