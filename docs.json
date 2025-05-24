@@ -14,11 +14,10 @@
         "tab": "Guides",
         "groups": [
           {
-            "group": "Get Started",
+            "group": "Guide de démarrage",
             "pages": [
               "index",
-              "quickstart",
-              "development"
+              "install"
             ]
           },
           {
