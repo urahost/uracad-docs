@@ -19,12 +19,18 @@
               "index"
             ]
           },
-                    {
-            "group": "Installation",
+          {
+            "group": "Installation & Configuration",
             "pages": [
               "installation/install",
               "installation/install-coolify",
-              "installation/install-docker"
+              "installation/install-docker",
+              "installation/configuration"
+            ]
+          },
+          {
+            "group": "Personnalisation",
+            "pages": [
             ]
           }
         ]

@@ -1,0 +1,196 @@
+---
+title: "Configuration"
+description: "Description of your new file."
+---
+
+# Configuration d'Uracad
+
+Cette section détaille la configuration complète de votre instance Uracad. Suivez ce guide pour personnaliser votre application selon vos besoins spécifiques.
+
+## **Méthodes d'authentification**
+
+Uracad supporte actuellement deux méthodes d'authentification pour vos utilisateurs :
+
+### **Méthodes disponibles**
+
+- **Email/Mot de passe** - Authentification standard par email
+- **Discord** - Authentification via compte Discord
+
+### **Configuration Discord OAuth**
+
+Pour activer l'authentification Discord, configurez ces variables dans votre fichier `.env` :
+
+```bash
+# Discord OAuth
+DISCORD_CLIENT_ID="your_discord_client_id"
+DISCORD_CLIENT_SECRET="your_discord_client_secret"
+```
+
+**Note** : D'autres providers OAuth (GitHub, Google) seront ajoutés dans les futures versions.
+
+---
+
+## **Configuration des Organizations**
+
+Personnalisez l'apparence et l'identité de vos organizations via le panel d'administration :
+
+### **Paramètres configurables**
+
+- **Nom de l'organization** - Définition du nom affiché publiquement
+- **Slug** - URL personnalisée pour votre organization
+- **Logo** - Upload de votre logo personnalisé
+- **Thème visuel** - Personnalisation des couleurs et de l'apparence
+
+---
+
+## **Système de rôles et permissions**
+
+Gérez les accès et permissions au sein de vos organizations :
+
+### **Gestion des rôles**
+
+- Création de rôles personnalisés
+- Attribution de permissions spécifiques
+- Hiérarchie des rôles
+- Gestion centralisée des invitations
+
+### **Types de permissions**
+
+- Administration de l'organization
+- Gestion des utilisateurs
+- Accès aux fonctionnalités spécifiques
+- Permissions de lecture et d'écriture
+
+---
+
+## **Configuration multilingue**
+
+Uracad intègre un système de traduction pour s'adapter à votre audience internationale :
+
+### **Langues supportées**
+
+- Français (par défaut)
+- Anglais
+- Autres langues disponibles sur demande
+
+La configuration des langues s'effectue via l'interface d'administration.
+
+---
+
+## **Gestion des utilisateurs**
+
+### **Paramètres utilisateur modifiables**
+
+- **Sécurité** - Changement de mot de passe avec validation
+- **Contact** - Modification d'email avec vérification
+- **Profil** - Informations personnelles et avatar
+- **Préférences** - Langue d'interface et paramètres de notification
+
+---
+
+## **Configuration Resend (Service Email)**
+
+Pour l'envoi d'emails système (notifications, invitations, vérifications) :
+
+```bash
+# Configuration Resend
+RESEND_API_KEY="your_resend_api_key"
+RESEND_AUDIENCE_ID="your_audience_id"
+RESEND_EMAIL_FROM="contact@uracad.app" # Format: "nom <email@domain.com>"
+NEXT_PUBLIC_EMAIL_CONTACT="contact@uracad.app"
+```
+
+### **Types d'emails automatiques**
+
+- Invitations aux organizations
+- Notifications système
+- Vérification d'email
+- Récupération de mot de passe
+
+---
+
+## **Configuration Better Auth**
+
+Better Auth gère l'authentification avancée et la sécurité des sessions :
+
+```bash
+# Better Auth Configuration
+BETTER_AUTH_URL=http://localhost:3000  # https://yourdomain.com en production
+BETTER_AUTH_SECRET="your_secret_key"
+```
+
+### **Fonctionnalités Better Auth**
+
+- Gestion sécurisée des sessions
+- Authentification multi-facteurs
+- Gestion des tokens d'accès
+- Sécurité renforcée des connexions
+
+---
+
+## **Configuration avancée**
+
+### **Variables d'environnement complètes**
+
+```bash
+# Base de données (Neon.tech recommandé)
+DATABASE_URL="your_database_url"
+DATABASE_URL_UNPOOLED="your_unpooled_connection" # Pour la production
+
+# Better Auth
+BETTER_AUTH_URL="http://localhost:3000" # En développement
+BETTER_AUTH_SECRET="your_secret_key"
+
+# Discord OAuth
+DISCORD_CLIENT_ID="your_discord_client_id"
+DISCORD_CLIENT_SECRET="your_discord_client_secret"
+
+# Configuration Email (Resend)
+RESEND_API_KEY="your_resend_api_key"
+RESEND_AUDIENCE_ID="your_audience_id"
+RESEND_EMAIL_FROM="contact@uracad.app"
+NEXT_PUBLIC_EMAIL_CONTACT="contact@uracad.app"
+
+# Upload de fichiers (UploadThing)
+UPLOADTHING_TOKEN="your_uploadthing_token"
+```
+
+### **Configuration Base de données**
+
+Uracad utilise [**Neon.tech**](http://Neon.tech) comme solution de base de données recommandée :
+
+- `DATABASE_URL` : Connexion pour le développement et les requêtes poolées
+- `DATABASE_URL_UNPOOLED` : Connexion directe pour la production
+
+**Documentation** : [Guide Prisma avec Neon](https://neon.tech/docs/guides/prisma)
+
+---
+
+## **Déploiement en production**
+
+### **Liste de vérification pré-déploiement**
+
+1. Configuration complète des variables d'environnement
+2. Test des providers OAuth configurés
+3. Vérification du service d'envoi d'emails
+4. Validation des permissions et rôles
+5. Configuration sécurisée de la base de données
+6. Activation du protocole HTTPS
+
+### **Recommandations de sécurité**
+
+- Utilisation de secrets cryptographiquement forts
+- Rotation régulière des clés API
+- Surveillance des logs d'authentification
+- Mise à jour régulière des dépendances
+- Configuration des headers de sécurité
+
+---
+
+## **Support technique**
+
+Pour toute assistance concernant la configuration :
+
+- Consultez la documentation complète
+- Consultez les issues sur [GitHub](https://github.com/Urahost/uracad/issues)
+- Contactez le support technique
