@@ -75,19 +75,6 @@ Uracad intègre un système de traduction pour s'adapter à votre audience inter
 - Anglais
 - Autres langues disponibles sur demande
 
-La configuration des langues s'effectue via l'interface d'administration.
-
----
-
-## **Gestion des utilisateurs**
-
-### **Paramètres utilisateur modifiables**
-
-- **Sécurité** - Changement de mot de passe avec validation
-- **Contact** - Modification d'email avec vérification
-- **Profil** - Informations personnelles et avatar
-- **Préférences** - Langue d'interface et paramètres de notification
-
 ---
 
 ## **Configuration Resend (Service Email)**
@@ -120,13 +107,6 @@ Better Auth gère l'authentification avancée et la sécurité des sessions :
 BETTER_AUTH_URL=http://localhost:3000  # https://yourdomain.com en production
 BETTER_AUTH_SECRET="your_secret_key"
 ```
-
-### **Fonctionnalités Better Auth**
-
-- Gestion sécurisée des sessions
-- Authentification multi-facteurs
-- Gestion des tokens d'accès
-- Sécurité renforcée des connexions
 
 ---
 
@@ -164,28 +144,9 @@ Uracad utilise [**Neon.tech**](http://Neon.tech) comme solution de base de donn�
 - `DATABASE_URL` : Connexion pour le développement et les requêtes poolées
 - `DATABASE_URL_UNPOOLED` : Connexion directe pour la production
 
-**Documentation** : [Guide Prisma avec Neon](https://neon.tech/docs/guides/prisma)
-
----
-
-## **Déploiement en production**
-
-### **Liste de vérification pré-déploiement**
-
-1. Configuration complète des variables d'environnement
-2. Test des providers OAuth configurés
-3. Vérification du service d'envoi d'emails
-4. Validation des permissions et rôles
-5. Configuration sécurisée de la base de données
-6. Activation du protocole HTTPS
-
-### **Recommandations de sécurité**
-
-- Utilisation de secrets cryptographiquement forts
-- Rotation régulière des clés API
-- Surveillance des logs d'authentification
-- Mise à jour régulière des dépendances
-- Configuration des headers de sécurité
+<Note>
+  [Guide Prisma avec Neon](https://neon.tech/docs/guides/prisma)
+</Note>
 
 ---
 
