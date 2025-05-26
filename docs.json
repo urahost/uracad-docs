@@ -17,7 +17,9 @@
             "group": "Guide de démarrage",
             "pages": [
               "index",
-              "install"
+              "installation/install",
+              "installation/install-coolify",
+              "installation/install-docker"
             ]
           }
         ]
