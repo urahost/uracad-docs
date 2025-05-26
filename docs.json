@@ -16,6 +16,12 @@
           {
             "group": "Guide de démarrage",
             "pages": [
+              "index"
+            ]
+          },
+                    {
+            "group": "Installation",
+            "pages": [
               "index",
               "installation/install",
               "installation/install-coolify",
