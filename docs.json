@@ -22,7 +22,6 @@
                     {
             "group": "Installation",
             "pages": [
-              "index",
               "installation/install",
               "installation/install-coolify",
               "installation/install-docker"
