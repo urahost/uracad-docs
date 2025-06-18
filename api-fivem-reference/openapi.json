@@ -177,31 +177,6 @@
         "summary": "Récupérer tous les citoyens ESX",
         "description": "Retourne la liste de tous les citoyens enregistrés dans ESX",
         "tags": ["ESX"],
-        "parameters": [
-          {
-            "name": "limit",
-            "in": "query",
-            "description": "Nombre maximum de résultats à retourner",
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 100,
-              "minimum": 1,
-              "maximum": 1000
-            }
-          },
-          {
-            "name": "offset",
-            "in": "query",
-            "description": "Nombre de résultats à ignorer",
-            "schema": {
-              "type": "integer",
-              "format": "int32",
-              "default": 0,
-              "minimum": 0
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "Liste des citoyens récupérée avec succès",
