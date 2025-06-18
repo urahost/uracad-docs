@@ -1,109 +1,116 @@
 {
-  "$schema": "https://mintlify.com/docs.json",
-  "theme": "maple",
-  "name": "Uracad",
-  "colors": {
-    "primary": "#9A3412",
-    "light": "#ffffff",
-    "dark": "#0b0d0e"
-  },
-  "favicon": "/favicon.svg",
-  "navigation": {
-    "tabs": [
-      {
-        "tab": "Guides",
-        "groups": [
-          {
-            "group": "Guide de démarrage",
-            "pages": [
-              "index"
+    "$schema": "https://mintlify.com/docs.json",
+    "theme": "maple",
+    "name": "Uracad",
+    "colors": {
+        "primary": "#9A3412",
+        "light": "#ffffff",
+        "dark": "#0b0d0e"
+    },
+    "favicon": "/favicon.svg",
+    "navigation": {
+        "tabs": [
+            {
+                "tab": "Guides",
+                "groups": [
+                    {
+                        "group": "Guide de démarrage",
+                        "pages": [
+                            "index"
+                        ]
+                    },
+                    {
+                        "group": "Installation & Configuration MDT",
+                        "pages": [
+                            "uracad/introduction",
+                            {
+                                "group": "Installation",
+                                "icon": "code",
+                                "pages": [
+                                    "uracad/install",
+                                    "uracad/install-coolify",
+                                    "uracad/install-docker"
+                                ]
+                            },
+                            "uracad/configuration"
+                        ]
+                    },
+                    {
+                        "group": "Installation & Configuration API",
+                        "pages": [
+                            "fivem-api/introduction",
+                            "fivem-api/install",
+                            "fivem-api/configuration"
+                        ]
+                    }
+                ]
+            },
+            {
+                "tab": "Fivem API Reference",
+                "groups": [
+                    {
+                        "group": "Fivem API Documentation",
+                        "pages": [
+                            "api-fivem-reference/introduction"
+                        ]
+                    },
+                    {
+                        "group": "Endpoint Examples",
+                        "pages": [
+                            "api-fivem-reference/endpoint/get",
+                            "api-fivem-reference/endpoint/create",
+                            "api-fivem-reference/endpoint/delete",
+                            "api-fivem-reference/endpoint/webhook"
+                        ]
+                    }
+                ]
+            }
+        ],
+        "global": {
+            "anchors": [
+                {
+                    "anchor": "Fivem API",
+                    "href": "https://cp.urahost.fr",
+                    "icon": "book-open-cover"
+                },
+                {
+                    "anchor": "Urahost",
+                    "href": "https://cp.urahost.fr",
+                    "icon": "desktop"
+                },
+                {
+                    "anchor": "Discord",
+                    "href": "https://discord.gg/urahost",
+                    "icon": "discord"
+                },
+                {
+                    "anchor": "Blog",
+                    "href": "https://bastien-b.fr",
+                    "icon": "newspaper"
+                }
             ]
-          },
-          {
-            "group": "Installation & Configuration MDT",
-            "pages": [
-              "uracad/introduction",
-              "uracad/install",
-              "uracad/install-coolify",
-              "uracad/install-docker",
-              "uracad/configuration"
-            ]
-          },          {
-            "group": "Installation & Configuration API",
-            "pages": [
-              "fivem-api/introduction",
-              "fivem-api/install",
-              "fivem-api/configuration"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "Fivem API Reference",
-        "groups": [
-          {
-            "group": "Fivem API Documentation",
-            "pages": [
-              "api-fivem-reference/introduction"
-            ]
-          },
-          {
-            "group": "Endpoint Examples",
-            "pages": [
-              "api-fivem-reference/endpoint/get",
-              "api-fivem-reference/endpoint/create",
-              "api-fivem-reference/endpoint/delete",
-              "api-fivem-reference/endpoint/webhook"
-            ]
-          }
-        ]
-      }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Fivem API",
-          "href": "https://cp.urahost.fr",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Urahost",
-          "href": "https://cp.urahost.fr",
-          "icon": "desktop"
-        },
-        {
-          "anchor": "Discord",
-          "href": "https://discord.gg/urahost",
-          "icon": "discord"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://bastien-b.fr",
-          "icon": "newspaper"
         }
-      ]
+    },
+    "logo": {
+        "light": "/logo/light.png",
+        "dark": "/logo/dark.png"
+    },
+    "navbar": {
+        "links": [
+            {
+                "label": "Support",
+                "href": "https://discord.gg/urahost"
+            }
+        ],
+        "primary": {
+            "type": "button",
+            "label": "Demo",
+            "href": "https://demo.uracad.com"
+        }
+    },
+    "footer": {
+        "socials": {
+            "github": "https://github.com/Urahost"
+        }
     }
-  },
-  "logo": {
-    "light": "/logo/light.png",
-    "dark": "/logo/dark.png"
-  },
-  "navbar": {
-    "links": [
-      {
-        "label": "Support",
-        "href": "https://discord.gg/urahost"
-      }
-    ],
-    "primary": {
-      "type": "button",
-      "label": "Demo",
-      "href": "https://demo.uracad.com"
-    }
-  },
-  "footer": {
-    "socials": {
-      "github": "https://github.com/Urahost"
-    }
-  }
 }
