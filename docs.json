@@ -8,6 +8,11 @@
         "dark": "#0b0d0e"
     },
     "favicon": "/favicon.svg",
+    "api": {
+        "playground": {
+            "display": "none"
+        }
+    },
     "navigation": {
         "tabs": [
             {
@@ -43,10 +48,24 @@
                 "tab": "Fivem API Reference",
                 "groups": [
                     {
-                        "group": "Fivem API Documentation",
+                        "group": "Getting Started",
                         "pages": [
                             "api-fivem-reference/introduction"
                         ]
+                    },
+                    {
+                        "group": "QBCore Endpoints",
+                        "openapi": {
+                            "source": "openapi.json",
+                            "directory": "api-fivem-reference/qbcore"
+                        }
+                    },
+                    {
+                        "group": "ESX Endpoints", 
+                        "openapi": {
+                            "source": "openapi.json",
+                            "directory": "api-fivem-reference/esx"
+                        }
                     }
                 ]
             }
