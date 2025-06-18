@@ -10,15 +10,11 @@
   },
   "servers": [
     {
-      "url": "https://votre-domaine.com/api",
-      "description": "Serveur principal"
+      "url": "https://votre-domaine.com",
+      "description": "Serveur principal (adaptez selon votre déploiement)"
     }
   ],
-  "security": [
-    {
-      "apiKeyAuth": []
-    }
-  ],
+
   "paths": {
     "/qbcore/citizens": {
       "get": {
@@ -503,13 +499,6 @@
             "description": "Message d'erreur descriptif"
           }
         }
-      }
-    },
-    "securitySchemes": {
-      "apiKeyAuth": {
-        "type": "apiKey",
-        "in": "header",
-        "name": "x-api-key"
       }
     }
   },
