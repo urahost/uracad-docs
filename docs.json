@@ -56,14 +56,14 @@
                     {
                         "group": "QBCore Endpoints",
                         "openapi": {
-                            "source": "openapi.json",
+                            "source": "api-fivem-reference/openapi.json",
                             "directory": "api-fivem-reference/qbcore"
                         }
                     },
                     {
                         "group": "ESX Endpoints", 
                         "openapi": {
-                            "source": "openapi.json",
+                            "source": "api-fivem-reference/openapi.json",
                             "directory": "api-fivem-reference/esx"
                         }
                     }
