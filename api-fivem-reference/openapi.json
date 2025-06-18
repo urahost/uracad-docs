@@ -1,0 +1,526 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "QBCore/ESX Citizens API",
+    "description": "API pour récupérer les informations des citoyens et leurs véhicules dans les frameworks QBCore et ESX",
+    "license": {
+      "name": "MIT"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://votre-domaine.com/api",
+      "description": "Serveur principal"
+    }
+  ],
+  "security": [
+    {
+      "apiKeyAuth": []
+    }
+  ],
+  "paths": {
+    "/qbcore/citizens": {
+      "get": {
+        "summary": "Récupérer tous les citoyens QBCore",
+        "description": "Retourne la liste de tous les citoyens enregistrés dans QBCore",
+        "tags": ["QBCore"],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Nombre maximum de résultats à retourner",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100,
+              "minimum": 1,
+              "maximum": 1000
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Nombre de résultats à ignorer",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0,
+              "minimum": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Liste des citoyens récupérée avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/QBCoreCitizen"
+                      }
+                    },
+                    "total": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erreur dans la requête",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Non autorisé",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/qbcore/citizens/{citizenid}": {
+      "get": {
+        "summary": "Récupérer un citoyen QBCore par ID",
+        "description": "Retourne les informations détaillées d'un citoyen spécifique",
+        "tags": ["QBCore"],
+        "parameters": [
+          {
+            "name": "citizenid",
+            "in": "path",
+            "description": "ID unique du citoyen",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Z]{3}[0-9]{5}$"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Citoyen trouvé",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/QBCoreCitizen"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Citoyen non trouvé",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/qbcore/citizens/{citizenid}/vehicles": {
+      "get": {
+        "summary": "Récupérer les véhicules d'un citoyen QBCore",
+        "description": "Retourne la liste des véhicules appartenant à un citoyen spécifique",
+        "tags": ["QBCore"],
+        "parameters": [
+          {
+            "name": "citizenid",
+            "in": "path",
+            "description": "ID unique du citoyen",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[A-Z]{3}[0-9]{5}$"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Liste des véhicules récupérée",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Vehicle"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Citoyen non trouvé",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/esx/citizens": {
+      "get": {
+        "summary": "Récupérer tous les citoyens ESX",
+        "description": "Retourne la liste de tous les citoyens enregistrés dans ESX",
+        "tags": ["ESX"],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Nombre maximum de résultats à retourner",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 100,
+              "minimum": 1,
+              "maximum": 1000
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Nombre de résultats à ignorer",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0,
+              "minimum": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Liste des citoyens récupérée avec succès",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ESXCitizen"
+                      }
+                    },
+                    "total": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Erreur dans la requête",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/esx/citizens/{citizenid}": {
+      "get": {
+        "summary": "Récupérer un citoyen ESX par ID",
+        "description": "Retourne les informations détaillées d'un citoyen spécifique",
+        "tags": ["ESX"],
+        "parameters": [
+          {
+            "name": "citizenid",
+            "in": "path",
+            "description": "ID unique du citoyen",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Citoyen trouvé",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/ESXCitizen"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Citoyen non trouvé",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/esx/citizens/{citizenid}/vehicles": {
+      "get": {
+        "summary": "Récupérer les véhicules d'un citoyen ESX",
+        "description": "Retourne la liste des véhicules appartenant à un citoyen spécifique",
+        "tags": ["ESX"],
+        "parameters": [
+          {
+            "name": "citizenid",
+            "in": "path",
+            "description": "ID unique du citoyen",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Liste des véhicules récupérée",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Vehicle"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Citoyen non trouvé",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "QBCoreCitizen": {
+        "type": "object",
+        "required": ["citizenid", "firstname", "lastname"],
+        "properties": {
+          "citizenid": {
+            "type": "string",
+            "description": "ID unique du citoyen (format: ABC12345)",
+            "pattern": "^[A-Z]{3}[0-9]{5}$"
+          },
+          "firstname": {
+            "type": "string",
+            "description": "Prénom du citoyen"
+          },
+          "lastname": {
+            "type": "string",
+            "description": "Nom de famille du citoyen"
+          },
+          "dob": {
+            "type": "string",
+            "format": "date",
+            "description": "Date de naissance"
+          },
+          "nationality": {
+            "type": "string",
+            "description": "Nationalité du citoyen"
+          },
+          "phone": {
+            "type": "string",
+            "description": "Numéro de téléphone"
+          },
+          "cash": {
+            "type": "integer",
+            "description": "Argent liquide possédé"
+          },
+          "bank": {
+            "type": "integer",
+            "description": "Argent en banque"
+          }
+        }
+      },
+      "ESXCitizen": {
+        "type": "object",
+        "required": ["identifier", "firstname", "lastname"],
+        "properties": {
+          "identifier": {
+            "type": "string",
+            "description": "Identifiant unique du citoyen"
+          },
+          "firstname": {
+            "type": "string",
+            "description": "Prénom du citoyen"
+          },
+          "lastname": {
+            "type": "string",
+            "description": "Nom de famille du citoyen"
+          },
+          "dateofbirth": {
+            "type": "string",
+            "format": "date",
+            "description": "Date de naissance"
+          },
+          "sex": {
+            "type": "string",
+            "enum": ["m", "f"],
+            "description": "Sexe du citoyen"
+          },
+          "height": {
+            "type": "integer",
+            "description": "Taille en centimètres"
+          },
+          "job": {
+            "type": "string",
+            "description": "Métier actuel"
+          },
+          "job_grade": {
+            "type": "integer",
+            "description": "Grade du métier"
+          }
+        }
+      },
+      "Vehicle": {
+        "type": "object",
+        "required": ["plate", "model"],
+        "properties": {
+          "plate": {
+            "type": "string",
+            "description": "Plaque d'immatriculation du véhicule"
+          },
+          "model": {
+            "type": "string",
+            "description": "Modèle du véhicule"
+          },
+          "garage": {
+            "type": "string",
+            "description": "Garage où est stocké le véhicule"
+          },
+          "state": {
+            "type": "integer",
+            "description": "État du véhicule (0=garage, 1=sorti, 2=fourrière)"
+          },
+          "fuel": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 100,
+            "description": "Niveau de carburant en pourcentage"
+          },
+          "engine": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1000,
+            "description": "État du moteur"
+          },
+          "body": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1000,
+            "description": "État de la carrosserie"
+          }
+        }
+      },
+      "Error": {
+        "required": ["error", "message"],
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Code d'erreur"
+          },
+          "message": {
+            "type": "string",
+            "description": "Message d'erreur descriptif"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "apiKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "x-api-key"
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "QBCore",
+      "description": "Endpoints pour le framework QBCore"
+    },
+    {
+      "name": "ESX",
+      "description": "Endpoints pour le framework ESX"
+    }
+  ]
+}

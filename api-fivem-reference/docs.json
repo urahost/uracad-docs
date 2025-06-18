@@ -1,0 +1,30 @@
+{
+  "name": "QBCore/ESX Citizens API Documentation",
+  "api": {
+    "playground": {
+      "display": "none"
+    }
+  },
+  "navigation": [
+    {
+      "group": "Introduction", 
+      "pages": [
+        "introduction"
+      ]
+    },
+    {
+      "group": "QBCore API",
+      "openapi": {
+        "source": "openapi.json",
+        "directory": "qbcore-api"
+      }
+    },
+    {
+      "group": "ESX API",
+      "openapi": {
+        "source": "openapi.json", 
+        "directory": "esx-api"
+      }
+    }
+  ]
+}
