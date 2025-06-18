@@ -107,7 +107,8 @@
             "required": true,
             "schema": {
               "type": "string",
-              "pattern": "^[A-Z]{3}[0-9]{5}$"
+              "pattern": "^[A-Z]{3}[0-9]{5}$",
+              "example": "HPP63796"
             }
           }
         ],
@@ -156,7 +157,8 @@
             "required": true,
             "schema": {
               "type": "string",
-              "pattern": "^[A-Z]{3}[0-9]{5}$"
+              "pattern": "^[A-Z]{3}[0-9]{5}$",
+              "example": "HPP63796"
             }
           }
         ],
@@ -375,49 +377,374 @@
           },
           "citizenid": {
             "type": "string",
-            "description": "ID unique du citoyen (format: ABC12345)",
+            "description": "ID unique du citoyen (format: HPP63796)",
             "pattern": "^[A-Z]{3}[0-9]{5}$"
           },
           "license": {
             "type": "string",
-            "description": "License Steam/FiveM du joueur (ex: license:4bb5858a5781a3e2a12dc7e7a5086b3e0955f6fd)"
+            "description": "License Steam/FiveM du joueur"
           },
           "name": {
             "type": "string",
             "description": "Nom d'utilisateur du joueur"
           },
           "money": {
-            "type": "string",
-            "description": "Argent en JSON stringifié {\"cash\":9531,\"bank\":16199.0,\"crypto\":0}"
+            "$ref": "#/components/schemas/QBCoreMoney"
           },
           "charinfo": {
-            "type": "string",
-            "description": "Informations du personnage en JSON stringifié {\"firstname\":\"James\",\"lastname\":\"Bradford\",\"birthdate\":\"1987-09-24\",\"nationality\":\"Américain\",\"gender\":\"Homme\",\"phone\":\"3256410651\",\"account\":\"US09QBCore2722472099\",\"cid\":\"1\"}"
+            "$ref": "#/components/schemas/QBCoreCharInfo"
           },
           "job": {
-            "type": "string",
-            "description": "Métier en JSON stringifié {\"name\":\"police\",\"label\":\"LSPD\",\"grade\":{\"name\":\"Chef\",\"level\":12,\"payment\":100,\"isboss\":true},\"onduty\":true,\"isboss\":true,\"type\":\"leo\"}"
+            "$ref": "#/components/schemas/QBCoreJob"
           },
           "gang": {
-            "type": "string",
-            "description": "Gang en JSON stringifié {\"name\":\"none\",\"label\":\"No Gang\",\"grade\":{\"name\":\"Unaffiliated\",\"level\":0,\"isboss\":false},\"isboss\":false}"
+            "$ref": "#/components/schemas/QBCoreGang"
           },
           "position": {
-            "type": "string",
-            "description": "Position dans le monde en JSON stringifié {\"x\":462.17,\"y\":-595.46,\"z\":28.48}"
+            "$ref": "#/components/schemas/Position"
           },
           "metadata": {
-            "type": "string",
-            "description": "Métadonnées du personnage en JSON stringifié (santé, faim, soif, stress, licences, etc.)"
+            "$ref": "#/components/schemas/QBCoreMetadata"
           },
           "inventory": {
-            "type": "string",
-            "description": "Inventaire en JSON stringifié avec objets détaillés [{\"name\":\"WEAPON_PISTOL_MK2\",\"count\":1,\"slot\":1,\"metadata\":{\"durability\":98.5,\"ammo\":12}}]"
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/QBCoreInventoryItem"
+            }
           },
           "last_updated": {
             "type": "string",
             "format": "date-time",
             "description": "Dernière mise à jour du personnage"
+          }
+        }
+      },
+      "QBCoreMoney": {
+        "type": "object",
+        "properties": {
+          "cash": {
+            "type": "number",
+            "description": "Argent liquide"
+          },
+          "bank": {
+            "type": "number", 
+            "description": "Argent en banque"
+          },
+          "crypto": {
+            "type": "number",
+            "description": "Cryptomonnaie"
+          }
+        }
+      },
+      "QBCoreCharInfo": {
+        "type": "object",
+        "properties": {
+          "firstname": {
+            "type": "string",
+            "description": "Prénom"
+          },
+          "lastname": {
+            "type": "string",
+            "description": "Nom de famille"
+          },
+          "birthdate": {
+            "type": "string",
+            "format": "date",
+            "description": "Date de naissance"
+          },
+          "nationality": {
+            "type": "string",
+            "description": "Nationalité"
+          },
+          "gender": {
+            "type": "string",
+            "description": "Genre"
+          },
+          "phone": {
+            "type": "string",
+            "description": "Numéro de téléphone"
+          },
+          "account": {
+            "type": "string",
+            "description": "Numéro de compte bancaire"
+          },
+          "cid": {
+            "type": "string",
+            "description": "Character ID"
+          }
+        }
+      },
+      "QBCoreJob": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Nom du métier"
+          },
+          "label": {
+            "type": "string",
+            "description": "Libellé du métier"
+          },
+          "type": {
+            "type": "string",
+            "description": "Type de métier (leo, ems, etc.)"
+          },
+          "isboss": {
+            "type": "boolean",
+            "description": "Est-ce que le joueur est boss"
+          },
+          "onduty": {
+            "type": "boolean",
+            "description": "En service"
+          },
+          "grade": {
+            "$ref": "#/components/schemas/JobGrade"
+          },
+          "payment": {
+            "type": "integer",
+            "description": "Salaire"
+          }
+        }
+      },
+      "QBCoreGang": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Nom du gang"
+          },
+          "label": {
+            "type": "string",
+            "description": "Libellé du gang"
+          },
+          "isboss": {
+            "type": "boolean",
+            "description": "Est-ce que le joueur est boss du gang"
+          },
+          "grade": {
+            "$ref": "#/components/schemas/GangGrade"
+          }
+        }
+      },
+      "JobGrade": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Nom du grade"
+          },
+          "level": {
+            "type": "integer",
+            "description": "Niveau du grade"
+          },
+          "payment": {
+            "type": "integer",
+            "description": "Salaire du grade"
+          },
+          "isboss": {
+            "type": "boolean",
+            "description": "Grade de boss"
+          }
+        }
+      },
+      "GangGrade": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Nom du grade de gang"
+          },
+          "level": {
+            "type": "integer",
+            "description": "Niveau du grade"
+          },
+          "isboss": {
+            "type": "boolean",
+            "description": "Grade de boss"
+          }
+        }
+      },
+      "Position": {
+        "type": "object",
+        "properties": {
+          "x": {
+            "type": "number",
+            "description": "Coordonnée X"
+          },
+          "y": {
+            "type": "number",
+            "description": "Coordonnée Y"
+          },
+          "z": {
+            "type": "number",
+            "description": "Coordonnée Z"
+          }
+        }
+      },
+      "QBCoreMetadata": {
+        "type": "object",
+        "properties": {
+          "hunger": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "description": "Niveau de faim"
+          },
+          "thirst": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "description": "Niveau de soif"
+          },
+          "stress": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "description": "Niveau de stress"
+          },
+          "armor": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "description": "Niveau d'armure"
+          },
+          "isdead": {
+            "type": "boolean",
+            "description": "Le personnage est-il mort"
+          },
+          "ishandcuffed": {
+            "type": "boolean",
+            "description": "Le personnage est-il menotté"
+          },
+          "inlaststand": {
+            "type": "boolean",
+            "description": "Le personnage est-il inconscient"
+          },
+          "tracker": {
+            "type": "boolean",
+            "description": "Traceur GPS actif"
+          },
+          "injail": {
+            "type": "integer",
+            "description": "Temps restant en prison (minutes)"
+          },
+          "bloodtype": {
+            "type": "string",
+            "description": "Groupe sanguin"
+          },
+          "fingerprint": {
+            "type": "string",
+            "description": "Empreinte digitale"
+          },
+          "walletid": {
+            "type": "string",
+            "description": "ID du portefeuille"
+          },
+          "callsign": {
+            "type": "string",
+            "description": "Indicatif radio"
+          },
+          "licences": {
+            "$ref": "#/components/schemas/Licences"
+          },
+          "criminalrecord": {
+            "$ref": "#/components/schemas/CriminalRecord"
+          },
+          "phonedata": {
+            "$ref": "#/components/schemas/PhoneData"
+          }
+        }
+      },
+      "Licences": {
+        "type": "object",
+        "properties": {
+          "driver": {
+            "type": "boolean",
+            "description": "Permis de conduire"
+          },
+          "weapon": {
+            "type": "boolean",
+            "description": "Permis de port d'arme"
+          },
+          "business": {
+            "type": "boolean",
+            "description": "Licence d'entreprise"
+          }
+        }
+      },
+      "CriminalRecord": {
+        "type": "object",
+        "properties": {
+          "hasRecord": {
+            "type": "boolean",
+            "description": "A un casier judiciaire"
+          }
+        }
+      },
+      "PhoneData": {
+        "type": "object",
+        "properties": {
+          "SerialNumber": {
+            "type": "integer",
+            "description": "Numéro de série du téléphone"
+          },
+          "InstalledApps": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Applications installées"
+          }
+        }
+      },
+      "QBCoreInventoryItem": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Nom de l'objet"
+          },
+          "count": {
+            "type": "integer",
+            "description": "Quantité"
+          },
+          "slot": {
+            "type": "integer",
+            "description": "Slot dans l'inventaire"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/ItemMetadata"
+          }
+        }
+      },
+      "ItemMetadata": {
+        "type": "object",
+        "properties": {
+          "durability": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "description": "Durabilité de l'objet"
+          },
+          "ammo": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Munitions (pour les armes)"
+          },
+          "serial": {
+            "type": "string",
+            "description": "Numéro de série"
+          },
+          "registered": {
+            "type": "string",
+            "description": "Nom du propriétaire enregistré"
+          },
+          "components": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Composants/accessoires"
           }
         }
       },
@@ -427,7 +754,7 @@
         "properties": {
           "identifier": {
             "type": "string",
-            "description": "Identifiant unique du citoyen (ex: char1:1c9eefd2d0a6dac378f6f7bdf7339709b5305111)"
+            "description": "Identifiant unique du citoyen"
           },
           "firstname": {
             "type": "string",
@@ -453,7 +780,7 @@
           },
           "job": {
             "type": "string",
-            "description": "Métier actuel (ex: unemployed, police, ambulance)"
+            "description": "Métier actuel"
           },
           "job_grade": {
             "type": "integer",
@@ -461,35 +788,37 @@
           },
           "group": {
             "type": "string",
-            "description": "Groupe d'utilisateur (ex: user, admin, superadmin)"
+            "description": "Groupe d'utilisateur"
           },
           "accounts": {
-            "type": "string",
-            "description": "Comptes en JSON stringifié {\"money\":650,\"bank\":3800,\"black_money\":0}"
+            "$ref": "#/components/schemas/ESXAccounts"
           },
           "inventory": {
-            "type": "string",
-            "description": "Inventaire en JSON stringifié avec objets [{\"name\":\"item\",\"count\":1,\"slot\":1}]"
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ESXInventoryItem"
+            }
           },
           "loadout": {
-            "type": "string",
-            "description": "Équipement en JSON stringifié"
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ESXWeapon"
+            }
           },
           "metadata": {
-            "type": "string",
-            "description": "Métadonnées en JSON stringifié {\"health\":188,\"armor\":0}"
+            "$ref": "#/components/schemas/ESXMetadata"
           },
           "position": {
-            "type": "string",
-            "description": "Position en JSON stringifié {\"x\":-898.6,\"y\":-2400.1,\"z\":14.0}"
+            "$ref": "#/components/schemas/Position"
           },
           "skin": {
-            "type": "string",
-            "description": "Apparence du personnage en JSON stringifié (très complexe)"
+            "$ref": "#/components/schemas/ESXSkin"
           },
           "status": {
-            "type": "string",
-            "description": "Statuts en JSON stringifié [{\"name\":\"hunger\",\"val\":559225,\"percent\":55.9}]"
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ESXStatus"
+            }
           },
           "is_dead": {
             "type": "boolean",
@@ -508,6 +837,215 @@
             "type": "string",
             "nullable": true,
             "description": "Numéro de téléphone du citoyen"
+          }
+        }
+      },
+      "ESXAccounts": {
+        "type": "object",
+        "properties": {
+          "money": {
+            "type": "number",
+            "description": "Argent liquide"
+          },
+          "bank": {
+            "type": "number",
+            "description": "Argent en banque"
+          },
+          "black_money": {
+            "type": "number",
+            "description": "Argent sale"
+          }
+        }
+      },
+      "ESXInventoryItem": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Nom de l'objet"
+          },
+          "count": {
+            "type": "integer",
+            "description": "Quantité"
+          },
+          "slot": {
+            "type": "integer",
+            "description": "Slot dans l'inventaire"
+          }
+        }
+      },
+      "ESXWeapon": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Nom de l'arme"
+          },
+          "ammo": {
+            "type": "integer",
+            "description": "Munitions"
+          }
+        }
+      },
+      "ESXMetadata": {
+        "type": "object",
+        "properties": {
+          "health": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 200,
+            "description": "Points de vie"
+          },
+          "armor": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "description": "Niveau d'armure"
+          }
+        }
+      },
+      "ESXSkin": {
+        "type": "object",
+        "properties": {
+          "model": {
+            "type": "string",
+            "description": "Modèle de personnage"
+          },
+          "eyeColor": {
+            "type": "integer",
+            "description": "Couleur des yeux"
+          },
+          "hair": {
+            "$ref": "#/components/schemas/ESXHair"
+          },
+          "headBlend": {
+            "$ref": "#/components/schemas/ESXHeadBlend"
+          },
+          "components": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ESXComponent"
+            }
+          },
+          "props": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ESXProp"
+            }
+          },
+          "headOverlays": {
+            "type": "object",
+            "description": "Superpositions faciales (maquillage, barbe, etc.)"
+          },
+          "faceFeatures": {
+            "type": "object",
+            "description": "Traits du visage"
+          },
+          "tattoos": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            },
+            "description": "Tatouages"
+          }
+        }
+      },
+      "ESXHair": {
+        "type": "object",
+        "properties": {
+          "style": {
+            "type": "integer",
+            "description": "Style de cheveux"
+          },
+          "color": {
+            "type": "integer",
+            "description": "Couleur principale"
+          },
+          "highlight": {
+            "type": "integer",
+            "description": "Couleur des mèches"
+          }
+        }
+      },
+      "ESXHeadBlend": {
+        "type": "object",
+        "properties": {
+          "shapeFirst": {
+            "type": "integer",
+            "description": "Première forme de visage"
+          },
+          "shapeSecond": {
+            "type": "integer",
+            "description": "Seconde forme de visage"
+          },
+          "shapeMix": {
+            "type": "number",
+            "description": "Mélange des formes"
+          },
+          "skinFirst": {
+            "type": "integer",
+            "description": "Première couleur de peau"
+          },
+          "skinSecond": {
+            "type": "integer",
+            "description": "Seconde couleur de peau"
+          },
+          "skinMix": {
+            "type": "number",
+            "description": "Mélange des couleurs de peau"
+          }
+        }
+      },
+      "ESXComponent": {
+        "type": "object",
+        "properties": {
+          "component_id": {
+            "type": "integer",
+            "description": "ID du composant vestimentaire"
+          },
+          "drawable": {
+            "type": "integer",
+            "description": "Drawable du vêtement"
+          },
+          "texture": {
+            "type": "integer",
+            "description": "Texture du vêtement"
+          }
+        }
+      },
+      "ESXProp": {
+        "type": "object",
+        "properties": {
+          "prop_id": {
+            "type": "integer",
+            "description": "ID de l'accessoire"
+          },
+          "drawable": {
+            "type": "integer",
+            "description": "Drawable de l'accessoire"
+          },
+          "texture": {
+            "type": "integer",
+            "description": "Texture de l'accessoire"
+          }
+        }
+      },
+      "ESXStatus": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Nom du statut"
+          },
+          "val": {
+            "type": "number",
+            "description": "Valeur brute"
+          },
+          "percent": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 100,
+            "description": "Valeur en pourcentage"
           }
         }
       },
