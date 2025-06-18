@@ -1,0 +1,80 @@
+---
+title: "Installation"
+description: "Description of your new file."
+---
+
+## Architecture technique
+
+Cette API est développée avec **NestJS**, un framework Node.js moderne et évolutif. Elle nécessite **Node.js version 22.x** ou supérieure pour fonctionner correctement.
+
+## Prérequis
+
+- Node.js 22.x ou version supérieure
+- npm ou yarn (gestionnaire de paquets)
+- Git
+- Accès à la base de données de votre serveur FiveM
+
+## Méthodes d'installation
+
+### Méthode 1 : Installation via Coolify
+
+L'API peut être déployée facilement via **Coolify**, une plateforme de déploiement qui simplifie la gestion des applications. Cette méthode est recommandée pour les déploiements en production et offre une interface de gestion intuitive.
+
+### Méthode 2 : Installation manuelle
+
+Pour une installation manuelle, suivez ces étapes :
+
+```
+# Cloner le repository
+git clone https://github.com/urahost/uracad-fivem-api.git
+
+# Accéder au répertoire du projet
+cd uracad-fivem-api
+
+# Installer les dépendances
+npm install
+
+# Construire l'application
+npm run build
+
+# Démarrer l'API
+npm run start
+```
+
+## Configuration
+
+### Variables d'environnement
+
+Avant de démarrer l'API, vous devez configurer les variables d'environnement selon le type de serveur FiveM que vous utilisez. Créez un fichier `.env` à la racine du projet et ajoutez les variables appropriées :
+
+#### Pour un serveur ESX
+
+```
+ESX_DATABASE_URL=mysql://username:password@host:port/database_name
+```
+
+#### Pour un serveur QB-Core
+
+```
+QBCORE_DATABASE_URL=mysql://username:password@host:port/database_name
+```
+
+#### Configuration mixte (optionnel)
+
+Si vous gérez plusieurs serveurs avec des frameworks différents, vous pouvez configurer les deux variables :
+
+```
+ESX_DATABASE_URL=mysql://username:password@host:port/esx_database
+QBCORE_DATABASE_URL=mysql://username:password@host:port/qbcore_database
+```
+
+**Important** : L'API détectera automatiquement le type de framework en fonction de la variable d'environnement configurée et adaptera ses requêtes en conséquence.
+
+### Format de l'URL de base de données
+
+Les URLs de base de données doivent respecter le format suivant :
+
+- **Hôte** : Adresse IP ou nom de domaine du serveur de base de données
+- **Port** : Port de connexion MySQL (généralement 3306)
+- **Base de données** : Nom de la base de données de votre serveur FiveM
+- **Identifiants** : Nom d'utilisateur et mot de passe avec les droits de lecture sur la base
