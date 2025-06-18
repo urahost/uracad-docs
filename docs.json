@@ -47,15 +47,6 @@
                         "pages": [
                             "api-fivem-reference/introduction"
                         ]
-                    },
-                    {
-                        "group": "Endpoint Examples",
-                        "pages": [
-                            "api-fivem-reference/endpoint/get",
-                            "api-fivem-reference/endpoint/create",
-                            "api-fivem-reference/endpoint/delete",
-                            "api-fivem-reference/endpoint/webhook"
-                        ]
                     }
                 ]
             }
