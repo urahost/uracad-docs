@@ -22,10 +22,11 @@
           {
             "group": "Installation & Configuration MDT",
             "pages": [
-              "installation/install",
-              "installation/install-coolify",
-              "installation/install-docker",
-              "installation/configuration"
+              "uracad/introduction",
+              "uracad/install",
+              "uracad/install-coolify",
+              "uracad/install-docker",
+              "uracad/configuration"
             ]
           },          {
             "group": "Installation & Configuration API",
