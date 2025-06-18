@@ -14,12 +14,6 @@
                 "tab": "Guides",
                 "groups": [
                     {
-                        "group": "Guide de démarrage",
-                        "pages": [
-                            "index"
-                        ]
-                    },
-                    {
                         "group": "Installation & Configuration MDT",
                         "pages": [
                             "uracad/introduction",
