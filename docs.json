@@ -25,6 +25,7 @@
               "installation/install",
               "installation/install-coolify",
               "installation/install-docker",
+              "installation/install-fivem-api",
               "installation/configuration"
             ]
           }
