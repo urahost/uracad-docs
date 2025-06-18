@@ -367,41 +367,57 @@
     "schemas": {
       "QBCoreCitizen": {
         "type": "object",
-        "required": ["citizenid", "firstname", "lastname"],
+        "required": ["id", "citizenid", "license", "name"],
         "properties": {
+          "id": {
+            "type": "integer",
+            "description": "ID unique en base de données"
+          },
           "citizenid": {
             "type": "string",
             "description": "ID unique du citoyen (format: ABC12345)",
             "pattern": "^[A-Z]{3}[0-9]{5}$"
           },
-          "firstname": {
+          "license": {
             "type": "string",
-            "description": "Prénom du citoyen"
+            "description": "License Steam/FiveM du joueur (ex: license:4bb5858a5781a3e2a12dc7e7a5086b3e0955f6fd)"
           },
-          "lastname": {
+          "name": {
             "type": "string",
-            "description": "Nom de famille du citoyen"
+            "description": "Nom d'utilisateur du joueur"
           },
-          "dob": {
+          "money": {
             "type": "string",
-            "format": "date",
-            "description": "Date de naissance"
+            "description": "Argent en JSON stringifié {\"cash\":9531,\"bank\":16199.0,\"crypto\":0}"
           },
-          "nationality": {
+          "charinfo": {
             "type": "string",
-            "description": "Nationalité du citoyen"
+            "description": "Informations du personnage en JSON stringifié {\"firstname\":\"James\",\"lastname\":\"Bradford\",\"birthdate\":\"1987-09-24\",\"nationality\":\"Américain\",\"gender\":\"Homme\",\"phone\":\"3256410651\",\"account\":\"US09QBCore2722472099\",\"cid\":\"1\"}"
           },
-          "phone": {
+          "job": {
             "type": "string",
-            "description": "Numéro de téléphone"
+            "description": "Métier en JSON stringifié {\"name\":\"police\",\"label\":\"LSPD\",\"grade\":{\"name\":\"Chef\",\"level\":12,\"payment\":100,\"isboss\":true},\"onduty\":true,\"isboss\":true,\"type\":\"leo\"}"
           },
-          "cash": {
-            "type": "integer",
-            "description": "Argent liquide possédé"
+          "gang": {
+            "type": "string",
+            "description": "Gang en JSON stringifié {\"name\":\"none\",\"label\":\"No Gang\",\"grade\":{\"name\":\"Unaffiliated\",\"level\":0,\"isboss\":false},\"isboss\":false}"
           },
-          "bank": {
-            "type": "integer",
-            "description": "Argent en banque"
+          "position": {
+            "type": "string",
+            "description": "Position dans le monde en JSON stringifié {\"x\":462.17,\"y\":-595.46,\"z\":28.48}"
+          },
+          "metadata": {
+            "type": "string",
+            "description": "Métadonnées du personnage en JSON stringifié (santé, faim, soif, stress, licences, etc.)"
+          },
+          "inventory": {
+            "type": "string",
+            "description": "Inventaire en JSON stringifié avec objets détaillés [{\"name\":\"WEAPON_PISTOL_MK2\",\"count\":1,\"slot\":1,\"metadata\":{\"durability\":98.5,\"ammo\":12}}]"
+          },
+          "last_updated": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Dernière mise à jour du personnage"
           }
         }
       },
@@ -411,7 +427,7 @@
         "properties": {
           "identifier": {
             "type": "string",
-            "description": "Identifiant unique du citoyen"
+            "description": "Identifiant unique du citoyen (ex: char1:1c9eefd2d0a6dac378f6f7bdf7339709b5305111)"
           },
           "firstname": {
             "type": "string",
@@ -424,12 +440,12 @@
           "dateofbirth": {
             "type": "string",
             "format": "date",
-            "description": "Date de naissance"
+            "description": "Date de naissance (YYYY-MM-DD)"
           },
           "sex": {
             "type": "string",
             "enum": ["m", "f"],
-            "description": "Sexe du citoyen"
+            "description": "Sexe du citoyen (m/f)"
           },
           "height": {
             "type": "integer",
@@ -437,11 +453,61 @@
           },
           "job": {
             "type": "string",
-            "description": "Métier actuel"
+            "description": "Métier actuel (ex: unemployed, police, ambulance)"
           },
           "job_grade": {
             "type": "integer",
             "description": "Grade du métier"
+          },
+          "group": {
+            "type": "string",
+            "description": "Groupe d'utilisateur (ex: user, admin, superadmin)"
+          },
+          "accounts": {
+            "type": "string",
+            "description": "Comptes en JSON stringifié {\"money\":650,\"bank\":3800,\"black_money\":0}"
+          },
+          "inventory": {
+            "type": "string",
+            "description": "Inventaire en JSON stringifié avec objets [{\"name\":\"item\",\"count\":1,\"slot\":1}]"
+          },
+          "loadout": {
+            "type": "string",
+            "description": "Équipement en JSON stringifié"
+          },
+          "metadata": {
+            "type": "string",
+            "description": "Métadonnées en JSON stringifié {\"health\":188,\"armor\":0}"
+          },
+          "position": {
+            "type": "string",
+            "description": "Position en JSON stringifié {\"x\":-898.6,\"y\":-2400.1,\"z\":14.0}"
+          },
+          "skin": {
+            "type": "string",
+            "description": "Apparence du personnage en JSON stringifié (très complexe)"
+          },
+          "status": {
+            "type": "string",
+            "description": "Statuts en JSON stringifié [{\"name\":\"hunger\",\"val\":559225,\"percent\":55.9}]"
+          },
+          "is_dead": {
+            "type": "boolean",
+            "description": "Indique si le citoyen est mort"
+          },
+          "disabled": {
+            "type": "boolean",
+            "description": "Indique si le compte est désactivé"
+          },
+          "last_property": {
+            "type": "string",
+            "nullable": true,
+            "description": "Dernière propriété visitée"
+          },
+          "phone_number": {
+            "type": "string",
+            "nullable": true,
+            "description": "Numéro de téléphone du citoyen"
           }
         }
       },
