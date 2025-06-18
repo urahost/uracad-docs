@@ -27,10 +27,25 @@
               "installation/install-docker",
               "installation/configuration"
             ]
+          }
+        ]
+      },
+      {
+        "tab": "Fivem API Reference",
+        "groups": [
+          {
+            "group": "Fivem API Documentation",
+            "pages": [
+              "api-fivem-reference/introduction"
+            ]
           },
           {
-            "group": "Personnalisation",
+            "group": "Endpoint Examples",
             "pages": [
+              "api-fivem-reference/endpoint/get",
+              "api-fivem-reference/endpoint/create",
+              "api-fivem-reference/endpoint/delete",
+              "api-fivem-reference/endpoint/webhook"
             ]
           }
         ]
@@ -39,9 +54,14 @@
     "global": {
       "anchors": [
         {
-          "anchor": "Urahost",
+          "anchor": "Fivem API",
           "href": "https://cp.urahost.fr",
           "icon": "book-open-cover"
+        },
+        {
+          "anchor": "Urahost",
+          "href": "https://cp.urahost.fr",
+          "icon": "desktop"
         },
         {
           "anchor": "Discord",
