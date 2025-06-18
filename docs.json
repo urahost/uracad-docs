@@ -20,13 +20,19 @@
             ]
           },
           {
-            "group": "Installation & Configuration",
+            "group": "Installation & Configuration MDT",
             "pages": [
               "installation/install",
               "installation/install-coolify",
               "installation/install-docker",
-              "installation/install-fivem-api",
               "installation/configuration"
+            ]
+          },          {
+            "group": "Installation & Configuration API",
+            "pages": [
+              "fivem-api/introduction",
+              "fivem-api/install",
+              "fivem-api/configuration"
             ]
           }
         ]
