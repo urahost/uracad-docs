@@ -1,6 +1,5 @@
 ---
 title: "Installation"
-description: "Description of your new file."
 ---
 
 ## Architecture technique
@@ -9,8 +8,9 @@ Cette API est développée avec **NestJS**, un framework Node.js moderne et évo
 
 ## Prérequis
 
-- Node.js 22.x ou version supérieure
-- npm ou yarn (gestionnaire de paquets)
+- Node.js 22.x ou version supérieure (pour installation manuelle)
+- Docker (pour installation Docker)
+- npm ou yarn (gestionnaire de paquets, pour installation manuelle)
 - Git
 - Accès à la base de données de votre serveur FiveM
 
@@ -20,11 +20,54 @@ Cette API est développée avec **NestJS**, un framework Node.js moderne et évo
 
 L'API peut être déployée facilement via **Coolify**, une plateforme de déploiement qui simplifie la gestion des applications. Cette méthode est recommandée pour les déploiements en production et offre une interface de gestion intuitive.
 
-### Méthode 2 : Installation manuelle
+### Méthode 2 : Installation via Docker
+
+Pour un déploiement rapide et portable, utilisez l'image Docker officielle :
+
+```bash
+# Démarrer l'API avec Docker
+docker run -d \
+  -p 8080:8080 \
+  --name uracad-api \
+  -e ESX_DATABASE_URL="mysql://username:password@host:port/database_name" \
+  -e QBCORE_DATABASE_URL="mysql://username:password@host:port/database_name" \
+  ghcr.io/urahost/uracad-fivem-api:develop
+```
+
+#### Avec Docker Compose
+
+Créez un fichier `docker-compose.yml` :
+
+```yaml
+version: '3.8'
+
+services:
+  uracad-api:
+    image: ghcr.io/urahost/uracad-fivem-api:develop
+    container_name: uracad-api
+    ports:
+      - "8080:8080"
+    environment:
+      - ESX_DATABASE_URL=mysql://username:password@host:port/database_name
+      - QBCORE_DATABASE_URL=mysql://username:password@host:port/database_name
+    restart: unless-stopped
+```
+
+Puis démarrez avec :
+
+```bash
+docker-compose up -d
+```
+
+#### Tags Docker disponibles
+
+- `ghcr.io/urahost/uracad-fivem-api:develop` - Version de développement
+
+### Méthode 3 : Installation manuelle
 
 Pour une installation manuelle, suivez ces étapes :
 
-```
+```bash
 # Cloner le repository
 git clone https://github.com/urahost/uracad-fivem-api.git
 
@@ -45,17 +88,21 @@ npm run start
 
 ### Variables d'environnement
 
-Avant de démarrer l'API, vous devez configurer les variables d'environnement selon le type de serveur FiveM que vous utilisez. Créez un fichier `.env` à la racine du projet et ajoutez les variables appropriées :
+Avant de démarrer l'API, vous devez configurer les variables d'environnement selon le type de serveur FiveM que vous utilisez.
+
+#### Pour installation manuelle
+
+Créez un fichier `.env` à la racine du projet et ajoutez les variables appropriées :
 
 #### Pour un serveur ESX
 
-```
+```env
 ESX_DATABASE_URL=mysql://username:password@host:port/database_name
 ```
 
 #### Pour un serveur QB-Core
 
-```
+```env
 QBCORE_DATABASE_URL=mysql://username:password@host:port/database_name
 ```
 
@@ -63,7 +110,7 @@ QBCORE_DATABASE_URL=mysql://username:password@host:port/database_name
 
 Si vous gérez plusieurs serveurs avec des frameworks différents, vous pouvez configurer les deux variables :
 
-```
+```env
 ESX_DATABASE_URL=mysql://username:password@host:port/esx_database
 QBCORE_DATABASE_URL=mysql://username:password@host:port/qbcore_database
 ```
@@ -78,3 +125,13 @@ Les URLs de base de données doivent respecter le format suivant :
 - **Port** : Port de connexion MySQL (généralement 3306)
 - **Base de données** : Nom de la base de données de votre serveur FiveM
 - **Identifiants** : Nom d'utilisateur et mot de passe avec les droits de lecture sur la base
+
+### Vérification de l'installation
+
+Une fois l'API démarrée, vous pouvez vérifier son bon fonctionnement en accédant à :
+
+```
+http://localhost:8080/
+```
+
+L'API devrait retourner un statut `200 OK` avec le message "hello"
